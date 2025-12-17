@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "学生" as Student
+
+rectangle "el-Campus" {
+  usecase "ログイン" as Login
+  usecase "授業資料をダウンロード" as Download
+  usecase "掲示板を見る" as BBS
+  usecase "課題を提出" as Submit
+  usecase "小テストを受ける" as UC_Quiz
+  usecase "お知らせを見る" as Notice
+  usecase "アンケートに回答" as Survey
+}
+
+Student --> Login
+Student --> Download
+Student --> BBS
+Student --> Submit
+Student --> Quiz
+Student --> Notice
+Student --> Survey
+
+@enduml
