@@ -1,0 +1,27 @@
+@startuml
+
+title オンラインショッピング 注文管理システム（状態遷移）
+
+state "注文作成中" as Create
+state "注文確認待ち" as Confirm
+state "支払い待ち" as PayWait
+state "支払い失敗" as PayFail
+state "配送準備中" as ShipPrep
+state "配送済み" as Delivered
+state "キャンセル済み" as Cancelled
+
+Create --> Confirm : 商品をカートに追加
+Confirm --> PayWait : 注文を確定
+
+PayWait --> ShipPrep : 支払い完了
+ShipPrep --> Delivered : 配送完了
+
+
+Create --> Cancelled : 注文キャンセル
+Confirm --> Cancelled : 注文キャンセル
+PayWait --> Cancelled : 注文キャンセル
+
+PayWait --> PayFail : 支払い失敗
+PayFail --> PayWait : 再度支払いを通知
+
+@enduml
